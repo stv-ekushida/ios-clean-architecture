@@ -19,7 +19,7 @@ final class PhotoListViewController: UIViewController {
     var photoListDataSource = PhotoListCollectionView()
     var photos: [Photo] = []
     
-    //MARK:- Method Level1
+    //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -30,15 +30,15 @@ final class PhotoListViewController: UIViewController {
         loadPhotos()
     }
 
-    //データの読み込み完了
+    //MARK:- Notification Callbak
     func didLoadPhotos(notification: Notification) {
         
         photos = PhotosLoadEvent.parse(userInfo: notification.userInfo) as! [Photo]
-        photoListDataSource.modify(photos: photos)
+        photoListDataSource.update(photos: photos)
         photoListCollectionView.reloadData()
     }
 
-    //MARK:- Private Method Level2
+    //MARK:- private
     fileprivate func setup() {
         setupPhotoListView()
         setupPresenter()
@@ -49,11 +49,6 @@ final class PhotoListViewController: UIViewController {
         presenter?.loadPhotos()
     }
 
-    fileprivate func didShowDetail(indexPath: IndexPath) {
-        presenter?.showDetail(photo: photos[indexPath.row], topOf: self)
-    }
-
-    //MARK:- Private Method Level3
     fileprivate func setupPhotoListView() {
         photoListCollectionView.dataSource = photoListDataSource
         photoListCollectionView.delegate = self
@@ -72,7 +67,11 @@ final class PhotoListViewController: UIViewController {
 extension PhotoListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didShowDetail(indexPath: indexPath)
+        showDetail(indexPath: indexPath)
+    }
+    
+    fileprivate func showDetail(indexPath: IndexPath) {
+        presenter?.showDetail(photo: photos[indexPath.row], topOf: self)
     }
 }
 

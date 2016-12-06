@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1A1D681424BA1D61A934E424EEBF10D7C8B75CC0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1A1D681424BA1D61A934E424EEBF10D7C8B75CC0" : 9223372036854775807,
+    "66C3A7675397F30FCCA1C8F4905E50BF6C023D4E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8C696E54-2DF4-4AAA-979A-0528BC523C5A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1A1D681424BA1D61A934E424EEBF10D7C8B75CC0" : "ios-clean-architecture\/",
+    "66C3A7675397F30FCCA1C8F4905E50BF6C023D4E" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ios-clean-architecture",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios-clean-architecture.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stv-ekushida\/ios-clean-architecture.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1A1D681424BA1D61A934E424EEBF10D7C8B75CC0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stv-ekushida\/ios-swift3-string.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "66C3A7675397F30FCCA1C8F4905E50BF6C023D4E"
+    }
+  ]
+}
