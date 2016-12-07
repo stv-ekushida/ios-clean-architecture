@@ -27,10 +27,10 @@ final class PhotoListUsecaseImpl: PhotoListUsecase {
 }
 
 //MARK:- PhotoListDataDelegate
-extension PhotoListUsecaseImpl: PhotoListDataDelegate {
+extension PhotoListUsecaseImpl: PhotoListDataOutput {
     
     func done(_ photos: [Photo]) {
-        PhotosLoadEvent.post(items: photos)
+        PhotoListDidLoadEvent.post(items: photos)
     }
     
     func noData() {

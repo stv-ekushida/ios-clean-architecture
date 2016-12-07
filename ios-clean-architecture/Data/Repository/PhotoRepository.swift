@@ -12,7 +12,7 @@ protocol PhotoListRepository {
     func loadData()
 }
 
-protocol PhotoListDataDelegate {
+protocol PhotoListDataOutput {
     func done(_: [Photo])
     func noData()
     func failure()
@@ -20,9 +20,9 @@ protocol PhotoListDataDelegate {
 
 final class PhotoRepositoryImpl: PhotoListRepository {
     
-    var delegate: PhotoListDataDelegate?
+    var delegate: PhotoListDataOutput?
     
-    init(delegate: PhotoListDataDelegate) {
+    init(delegate: PhotoListDataOutput) {
         self.delegate = delegate
     }
 
