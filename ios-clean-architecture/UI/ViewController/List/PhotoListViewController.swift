@@ -33,7 +33,7 @@ final class PhotoListViewController: UIViewController {
     //MARK:- Notification Callbak
     func didLoadPhotos(notification: Notification) {
         
-        photos = PhotosLoadEvent.parse(userInfo: notification.userInfo) as! [Photo]
+        photos = PhotoListDidLoadEvent.parse(userInfo: notification.userInfo) as! [Photo]
         photoListDataSource.update(photos: photos)
         photoListCollectionView.reloadData()
     }
@@ -59,7 +59,7 @@ final class PhotoListViewController: UIViewController {
     }
 
     fileprivate func addCallBackEvent() {
-        PhotosLoadEvent.add(self, Selector.didLoadPhotos)
+        PhotoListDidLoadEvent.add(self, Selector.didLoadPhotos)
     }
 }
 
@@ -67,11 +67,11 @@ final class PhotoListViewController: UIViewController {
 extension PhotoListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showDetail(indexPath: indexPath)
+        didSelectAtInexPath(indexPath: indexPath)
     }
     
-    fileprivate func showDetail(indexPath: IndexPath) {
-        presenter?.showDetail(photo: photos[indexPath.row], topOf: self)
+    fileprivate func didSelectAtInexPath(indexPath: IndexPath) {
+        presenter?.pushDetailScene(photo: photos[indexPath.row], topOf: self)
     }
 }
 

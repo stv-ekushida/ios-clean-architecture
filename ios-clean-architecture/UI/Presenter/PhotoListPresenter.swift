@@ -21,23 +21,21 @@ final class PhotoListPresenter: NSObject {
         usecase?.loadData()
     }
 
-    func showDetail(photo: Photo, topOf: UIViewController) {
+    func pushDetailScene(photo: Photo, topOf: UIViewController) {
 
-        let vc = createVC() as! PhotoDetailViewController
-        setupParam(vc: vc, param: photo)
+        let vc = createPhotoDetailViewControllerWithPhoto(photo: photo)
         topOf.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension PhotoListPresenter: ViewControllerType {
+extension PhotoListPresenter: ViewControllerFactory {
 
-    func createVC() -> UIViewController? {
-
-        return UIStoryboard.getViewController(storyboardName: "PhotoDetail",
-                                              identifier: PhotoDetailViewController.identifier)
-    }
-
-    func setupParam(vc: UIViewController, param: Any) {
-        (vc as! PhotoDetailViewController).photo = param as? Photo
+    func createPhotoDetailViewControllerWithPhoto(photo: Photo) -> PhotoDetailViewController {
+        
+ 
+        let vc = UIStoryboard.getViewController(storyboardName: "PhotoDetail",
+                                              identifier: PhotoDetailViewController.identifier) as! PhotoDetailViewController
+        vc.photo = photo
+        return vc
     }
 }
