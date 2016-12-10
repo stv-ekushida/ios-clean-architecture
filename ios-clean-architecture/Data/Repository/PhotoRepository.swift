@@ -16,19 +16,16 @@ protocol PhotoListLoading {
 
 final class PhotoRepository: PhotoListLoadable {
     
-    var delegate: PhotoListLoading?
+    var loading: PhotoListLoading?
     
-    init(delegate: PhotoListLoading) {
-        self.delegate = delegate
-    }
-
     func loadData() {
         
         let photos = PhotoDataSource.plist()
+        
         if photos.count == 0 {
-            delegate?.noData()
+            loading?.noData()
             return
         }        
-        delegate?.done(photos)
+        loading?.done(photos)
     }
 }
