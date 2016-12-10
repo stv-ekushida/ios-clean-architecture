@@ -55,7 +55,7 @@ final class PhotoListViewController: UIViewController {
     }
 
     fileprivate func setupPresenter() {
-        presenter = PhotoListPresenter(usecase: PhotoListUsecaseImpl())
+        presenter = PhotoListPresenter(usecase: PhotoListUsecase())
     }
 
     fileprivate func addCallBackEvent() {

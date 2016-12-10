@@ -8,21 +8,17 @@
 
 import UIKit
 
-protocol PhotoListRepository {
-    func loadData()
-}
-
-protocol PhotoListDataOutput {
+protocol PhotoListLoading {
     func done(_: [Photo])
     func noData()
     func failure()
 }
 
-final class PhotoRepositoryImpl: PhotoListRepository {
+final class PhotoRepository: PhotoListLoadable {
     
-    var delegate: PhotoListDataOutput?
+    var delegate: PhotoListLoading?
     
-    init(delegate: PhotoListDataOutput) {
+    init(delegate: PhotoListLoading) {
         self.delegate = delegate
     }
 

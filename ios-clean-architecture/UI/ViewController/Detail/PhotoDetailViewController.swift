@@ -38,7 +38,7 @@ final class PhotoDetailViewController: UIViewController {
     }
 }
 
-extension PhotoDetailViewController: PhotoDetailDelegate {
+extension PhotoDetailViewController: PhotoDetailViewUpdateable {
 
     func updateThumnail(image: UIImage?) {
         thumnailImageView.image = image
