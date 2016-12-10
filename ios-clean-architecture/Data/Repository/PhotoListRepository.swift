@@ -1,5 +1,5 @@
 //
-//  PhotoRepository.swift
+//  PhotoListRepository.swift
 //  ios-clean-architecture
 //
 //  Created by Eiji Kushida on 2016/12/01.
@@ -8,24 +8,29 @@
 
 import UIKit
 
-protocol PhotoListLoading {
+protocol PhotoListRepositoryLoadable {
+    var output: PhotoListOutput? { set get }
+    func loadData()
+}
+
+protocol PhotoListOutput {
     func done(_: [Photo])
     func noData()
     func failure()
 }
 
-final class PhotoRepository: PhotoListLoadable {
+final class PhotoListRepository: PhotoListRepositoryLoadable {
     
-    var loading: PhotoListLoading?
+    var output: PhotoListOutput?
     
     func loadData() {
         
         let photos = PhotoDataSource.plist()
         
         if photos.count == 0 {
-            loading?.noData()
+            output?.noData()
             return
         }        
-        loading?.done(photos)
+        output?.done(photos)
     }
 }

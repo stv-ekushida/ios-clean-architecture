@@ -10,9 +10,9 @@ import UIKit
 
 final class PhotoListPresenter: NSObject {
 
-    var usecase: PhotoListUsecase?
+    var usecase: PhotoListUsecaseLoadable?
 
-    init(usecase: PhotoListUsecase) {
+    init(usecase: PhotoListUsecaseLoadable) {
         super.init()
         self.usecase = usecase
     }

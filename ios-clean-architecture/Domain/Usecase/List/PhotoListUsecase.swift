@@ -8,27 +8,27 @@
 
 import UIKit
 
-protocol PhotoListLoadable {
+protocol PhotoListUsecaseLoadable {
     func loadData()
 }
 
-final class PhotoListUsecase: PhotoListLoadable {
+final class PhotoListUsecase: PhotoListUsecaseLoadable {
 
-    var photoRepository: PhotoRepository?
+    var photoRepository: PhotoListRepositoryLoadable?
     
-    init(repository: PhotoRepository) {
+    init(repository: PhotoListRepositoryLoadable) {
         photoRepository = repository
-        photoRepository?.loading = self
+        photoRepository?.output = self
     }
-
+        
     /// 写真データを読み出す
     func loadData() {
         photoRepository?.loadData()
     }
 }
 
-//MARK:- PhotoListLoading
-extension PhotoListUsecase: PhotoListLoading {
+//MARK:- PhotoListOutput
+extension PhotoListUsecase: PhotoListOutput {
     
     func done(_ photos: [Photo]) {
         PhotoListDidLoadEvent.post(items: photos)
