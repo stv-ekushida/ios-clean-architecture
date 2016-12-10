@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol PhotoDetailDelegate {
+protocol PhotoDetailViewUpdateable {
     func updateThumnail(image: UIImage?)
 }
 
 final class PhotoDetailPresenter: NSObject {
 
-    var delegate: PhotoDetailDelegate?
+    var delegate: PhotoDetailViewUpdateable?
 
-    init(delegate: PhotoDetailDelegate) {
+    init(delegate: PhotoDetailViewUpdateable) {
         self.delegate = delegate
     }
 
