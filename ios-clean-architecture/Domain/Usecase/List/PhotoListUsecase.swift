@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PhotoListUsecaseLoadable {
-    func loadData()
+    func photos()
 }
 
 final class PhotoListUsecase: PhotoListUsecaseLoadable {
@@ -18,17 +18,17 @@ final class PhotoListUsecase: PhotoListUsecaseLoadable {
     
     init(repository: PhotoListRepositoryLoadable) {
         photoRepository = repository
-        photoRepository?.output = self
+        photoRepository?.delegate = self
     }
         
     /// 写真データを読み出す
-    func loadData() {
-        photoRepository?.loadData()
+    func photos() {
+        photoRepository?.photos()
     }
 }
 
-//MARK:- PhotoListOutput
-extension PhotoListUsecase: PhotoListOutput {
+//MARK:- PhotoListLoading
+extension PhotoListUsecase: PhotoListLoading {
     
     func done(_ photos: [Photo]) {
         PhotoListDidLoadEvent.post(items: photos)

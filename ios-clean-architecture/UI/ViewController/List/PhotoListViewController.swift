@@ -34,7 +34,7 @@ final class PhotoListViewController: UIViewController {
     func didLoadPhotos(notification: Notification) {
         
         photos = PhotoListDidLoadEvent.parse(userInfo: notification.userInfo) as! [Photo]
-        photoListDataSource.update(photos: photos)
+        photoListDataSource.add(photos: photos)
         photoListCollectionView.reloadData()
     }
 
@@ -46,7 +46,7 @@ final class PhotoListViewController: UIViewController {
     }
 
     fileprivate func loadPhotos() {
-        presenter?.loadPhotos()
+        presenter?.photos()
     }
 
     fileprivate func setupPhotoListView() {
