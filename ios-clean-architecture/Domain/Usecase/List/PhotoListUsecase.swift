@@ -16,8 +16,9 @@ final class PhotoListUsecase: PhotoListLoadable {
 
     var photoRepository: PhotoRepository?
     
-    init() {
-        photoRepository = PhotoRepository(delegate: self)
+    init(repository: PhotoRepository) {
+        photoRepository = repository
+        photoRepository?.loading = self
     }
 
     /// 写真データを読み出す
@@ -26,7 +27,7 @@ final class PhotoListUsecase: PhotoListLoadable {
     }
 }
 
-//MARK:- PhotoListDataDelegate
+//MARK:- PhotoListLoading
 extension PhotoListUsecase: PhotoListLoading {
     
     func done(_ photos: [Photo]) {
