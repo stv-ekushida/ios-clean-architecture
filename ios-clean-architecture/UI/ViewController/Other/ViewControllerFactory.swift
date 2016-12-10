@@ -9,5 +9,5 @@
 import UIKit
 
 protocol ViewControllerFactory {
-    func createPhotoDetailViewControllerWithPhoto(photo: Photo) -> PhotoDetailViewController
+    func makePhotoDetailViewControllerWithPhoto(photo: Photo) -> PhotoDetailViewController
 }

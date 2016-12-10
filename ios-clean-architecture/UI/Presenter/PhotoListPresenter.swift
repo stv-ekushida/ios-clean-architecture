@@ -17,20 +17,20 @@ final class PhotoListPresenter: NSObject {
         self.usecase = usecase
     }
 
-    func loadPhotos() {
-        usecase?.loadData()
+    func photos() {
+        usecase?.photos()
     }
 
     func pushDetailScene(photo: Photo, topOf: UIViewController) {
 
-        let vc = createPhotoDetailViewControllerWithPhoto(photo: photo)
+        let vc = makePhotoDetailViewControllerWithPhoto(photo: photo)
         topOf.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension PhotoListPresenter: ViewControllerFactory {
 
-    func createPhotoDetailViewControllerWithPhoto(photo: Photo) -> PhotoDetailViewController {
+    func makePhotoDetailViewControllerWithPhoto(photo: Photo) -> PhotoDetailViewController {
         
  
         let vc = UIStoryboard.getViewController(storyboardName: "PhotoDetail",

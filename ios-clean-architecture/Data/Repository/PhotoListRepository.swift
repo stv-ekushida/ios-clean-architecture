@@ -9,11 +9,11 @@
 import UIKit
 
 protocol PhotoListRepositoryLoadable {
-    var output: PhotoListOutput? { set get }
-    func loadData()
+    var delegate: PhotoListLoading? { set get }
+    func photos()
 }
 
-protocol PhotoListOutput {
+protocol PhotoListLoading {
     func done(_: [Photo])
     func noData()
     func failure()
@@ -21,16 +21,16 @@ protocol PhotoListOutput {
 
 final class PhotoListRepository: PhotoListRepositoryLoadable {
     
-    var output: PhotoListOutput?
+    var delegate: PhotoListLoading?
     
-    func loadData() {
+    func photos() {
         
         let photos = PhotoDataSource.plist()
         
         if photos.count == 0 {
-            output?.noData()
+            delegate?.noData()
             return
         }        
-        output?.done(photos)
+        delegate?.done(photos)
     }
 }

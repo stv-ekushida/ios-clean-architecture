@@ -12,7 +12,7 @@ final class PhotoListCollectionView: NSObject, UICollectionViewDataSource {
 
     var photos: [Photo] = []
 
-    func update(photos: [Photo]) {
+    func add(photos: [Photo]) {
         self.photos = photos
     }
 
