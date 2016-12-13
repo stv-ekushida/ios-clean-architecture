@@ -31,7 +31,10 @@ final class PhotoListUsecase: PhotoListUsecaseLoadable {
 extension PhotoListUsecase: PhotoListLoading {
     
     func done(_ photos: [Photo]) {
-        PhotoListDidLoadEvent.post(items: photos)
+        
+        Event.postNotification(notification: .photoListDidLoad,
+                               object: nil,
+                               userInfo: [Event.Notification.photoListDidLoad.rawValue: photos as Any])
     }
     
     func noData() {
