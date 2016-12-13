@@ -17,7 +17,11 @@ final class PhotoListViewController: UIViewController {
     @IBOutlet weak var photoListCollectionView: UICollectionView!
     var presenter: PhotoListPresenter?
     var photoListDataSource = PhotoListCollectionView()
-    var photos: [Photo] = []
+    var photos: [Photo] = [] {
+        didSet {
+            photoListCollectionView.reloadData()
+        }
+    }
     
     //MARK:- Life Cycle
     override func viewDidLoad() {
@@ -33,9 +37,10 @@ final class PhotoListViewController: UIViewController {
     //MARK:- Notification Callbak
     func didLoadPhotos(notification: Notification) {
         
-        photos = PhotoListDidLoadEvent.parse(userInfo: notification.userInfo) as! [Photo]
+        photos = notification.userInfo?[Event.Notification.photoListDidLoad.rawValue] as! [Photo]
         photoListDataSource.add(photos: photos)
-        photoListCollectionView.reloadData()
+        
+        Event.removeObserver(observer: self, notification: .photoListDidLoad)
     }
 
     //MARK:- private
@@ -59,7 +64,10 @@ final class PhotoListViewController: UIViewController {
     }
 
     fileprivate func addCallBackEvent() {
-        PhotoListDidLoadEvent.add(self, Selector.didLoadPhotos)
+        
+        Event.addObserver(observer: self,
+                          selector: .didLoadPhotos,
+                          notification: .photoListDidLoad)
     }
 }
 
